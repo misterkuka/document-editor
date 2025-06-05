@@ -1,30 +1,15 @@
 # Document Editor
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
-
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/double-blind-bio/v0-document-editor)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/SNc5XRMRf2v)
-
 ## Overview
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+This is a an AI document editor that allows a user to upload a document, identify the fields in the document, and then fill them in with [[PLACEHOLDER]]. Except that it's broken.
 
-## Deployment
+## Tasks
 
-Your project is live at:
+Your task is to fix it.
 
-**[https://vercel.com/double-blind-bio/v0-document-editor](https://vercel.com/double-blind-bio/v0-document-editor)**
+## Requirements
 
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.dev/chat/projects/SNc5XRMRf2v](https://v0.dev/chat/projects/SNc5XRMRf2v)**
-
-## How It Works
-
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+- A user can upload any docx document and have it render in the tool.
+- When the user clicks "Analyze Document," the AI Agent should scan the document and identify any fields that need to be populated or are already populated.
+- After analyzing, the user should be able to click a button to add [[PLACEHOLDER]], where all the answers should be placed. If there's an existing answer, it should be replaced.
