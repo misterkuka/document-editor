@@ -38,14 +38,15 @@ For each field found, provide a JSON response in this exact format:
       "type": "text|number|date|email|phone|address|checkbox",
       "description": "Brief description of what this field is for",
       "placeholder": "[[FIELD_NAME]]",
-      "required": true|false
+      "required": true|false,
+      "currentValue": "string"
     }
   ]
 }
 
-Only return the JSON, no other text.`,
+Only return the JSON itself.`,
       system:
-        "You are a document analysis expert. Analyze documents to identify fillable fields that users would need to complete. Return only valid JSON.",
+        "You are a document analysis expert. Analyze documents to identify fillable fields that users would need to complete. Return only valid JSON,  no other text or json/markdown prefixes, just the JSON string that can be parsed without errors with JSON.parse function.",
     })
 
     return NextResponse.json({ analysis: text })

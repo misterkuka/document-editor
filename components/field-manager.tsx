@@ -14,6 +14,7 @@ interface IdentifiedField {
   type: string
   description: string
   placeholder: string
+  currentValue?: string
   required: boolean
 }
 
@@ -122,6 +123,7 @@ export default function FieldManager({
   }
 
   const applyPlaceholders = async () => {
+    console.log(identifiedFields)
     if (identifiedFields.length === 0) {
       toast({
         title: "No Fields",
@@ -134,7 +136,10 @@ export default function FieldManager({
     try {
       // Get the current document content from the editor
       const documentContainer = document.querySelector(".document-container")
-      if (!documentContainer) return
+      if (!documentContainer) {
+        console.log("Document container not found")
+        return
+      }
 
       let content = documentContainer.innerHTML
 
@@ -153,9 +158,14 @@ export default function FieldManager({
         })
       })
 
+      //replace current values as well - this must happen after regex so they dont collide
+      identifiedFields.forEach((field) => {
+        content = content.replace(new RegExp(`\\b${field.currentValue}\\b`, "gi"), field.placeholder)
+      })
+
       // Update the document content
       documentContainer.innerHTML = content
-
+      console.log("Placeholders applied:", identifiedFields)
       toast({
         title: "Placeholders Applied",
         description: `Applied ${identifiedFields.length} placeholders to the document`,
@@ -245,6 +255,10 @@ export default function FieldManager({
                   </div>
                   <p className="text-xs text-gray-600 mb-2">{field.description}</p>
                   <code className="text-xs bg-gray-100 px-2 py-1 rounded">{field.placeholder}</code>
+                  <div className="mt-2 flex-col gap-2">
+                    <div className="font-semibold text-sm flex items-center gap-2">Current value:</div>
+                    <code className="text-xs bg-gray-100 px-2 py-1 rounded">{field.currentValue}</code>
+                  </div>
                 </Card>
               ))}
             </div>
